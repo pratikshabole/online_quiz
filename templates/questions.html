@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>{{category.title}} Questions</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'question.css'%}">
+
+</head>
+<body>
+    <center>
+    <h1 class="my-4">{{category.title}} Questions</h1>
+    </center>
+
+    {% if question.question%}
+        <div class="card my-5 border-dark shadow" id="question-box">
+            <h4 class="card-header border-dark" id="question">{{question.question}}</h4>
+             
+            <form method="post" action="{% url 'submit_answer' category.id question.id %}">
+                {% csrf_token %}
+                    <div class="card-body" id="options">
+                        <table class="table table-bordered">
+                        <input id="option_1" name="answer" value="{{ question.option1 }}" type="radio" />
+                        <label for="option_1"> {{question.option1}}</label>
+                        <br>
+                        <br>
+                        <input id="option_2" name="answer" value="{{ question.option2 }}" type="radio" />
+                        <label for="option_2"> {{question.option2}}</label>
+                        <br>
+                        <br>
+                        <input id="option_3" name="answer" value="{{ question.option3 }}" type="radio" />
+                        <label for="option_3"> {{question.option3}}</label>
+                        <br>
+                        <br>
+                        <input id="option_4" name="answer" value="{{ question.option4 }}" type="radio" />
+                        <label for="option_4"> {{question.option4}}</label>
+                    </table>
+                    </div>
+                    <div class="card-footer" id="cardfooter">
+                        <input type="submit" name="skip" value="Skip" class="btn btn-warning" />
+                        <input type="submit" name="submit" value="Submit" class="btn btn-primary" />
+                    
+                    </div>
+            </form>
+            
+        </div>
+        {% else %}
+        <br>
+        <center>
+        <h3 style="color: red;">Questions are not available yet for this category!!!<br> try another category!!!</h3>
+        <br>
+        <a class="btn btn-primary btn-lg" href="{% url 'all_categories' %}" role="button">Go Back to Categories</a>
+        <a class="btn btn-primary btn-lg" href="{% url 'home' %}" role="button">Go Back to Home</a>
+        </center>
+        {% endif %}
+</body>
+</html>

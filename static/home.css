@@ -1,0 +1,44 @@
+#intro{
+    margin: 4% ;
+}
+
+#nav{
+    font-size: 26;
+    margin-left: 3%;
+    margin-right: 3%;
+    color: #fff;
+}
+.banner-card1{
+    position: relative;
+}
+
+.banner-card1 img{
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    height: 90vh;
+    width: 218vh;
+} 
+.banner-text{
+    position: absolute;
+    top: 170px;
+    color: #fff;
+    padding: 50px;
+}
+
+.banner-text h2{
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.banner-card2 img{
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    height: 90vh;
+    width: 218vh;
+} 

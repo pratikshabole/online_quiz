@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Result</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'result.css'%}">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+        <div class="container-fluid" id="nav">
+            <a class="navbar-brand" style="font-size:26px" href="#"><b>PyQuiz</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-size:20px">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                    </li>
+
+                    {% if user.is_superuser %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+                    </li>
+                    {% endif %}
+
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'all_categories' %}">Categories</a>
+                    </li>
+                    {% endif %}
+
+                    {% if user.is_annonymus %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">login</a>
+                    </li>
+                    {% endif %}
+                </ul>
+
+                <ul class="nav justify-content-end" style="font-size:20px">
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:#D1F2EB" >Welcome, {{user}}</a> 
+                    </li>
+
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:white" href="{% url 'logout' %}">logout</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</nav>
+
+    <div class="result-body">
+        <center>
+        <h1>Result Details</h1>
+        <table class="table table-bordered" id="t1">
+            <tr>
+                <th>Skipped Questions</th>
+                <td>{{ total_skipped }}</td>
+            </tr>
+            <tr>
+                <th>Attempted Questions</th>
+                <td>{{ attempted }}</td>
+            </tr>
+            <tr>
+                <th>Correct Answers</th>
+                <td>{{ right_answer }}</td>
+            </tr>
+            <tr>
+                <th>Percentage</th>
+                <td>{{ percent }} %</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                {% if percent > 35 %}
+                <td class="text-success"><b>Passed</b></td>
+                {% else %}
+                <td class="text-red-300"><b>Failed</b></td>
+                {% endif %}
+            </tr>
+        </table>
+        </center>
+    <br>
+    <center>
+        <a class="btn btn-primary btn-lg" href="{% url 'home' %}">Go Back To Home</a>
+    </center>
+    <br>
+        <center><h3 class="my-4"><b>Attempted Questions</b></h3></center>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Question</th>
+                    <th>Correct Answer</th>
+                    <th>Submitted Answer</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for row in result %}
+                    <tr>
+                        <td>{{row.id}}</td>
+                        <td>{{row.question}}</td>
+                        <td>{{row.question.correct_option}}</td>
+
+                        {% if row.question.correct_option == row.correct_answer %}
+                            <td class="bg-success text-white">{{row.correct_answer}}</td>
+                        {% else %}
+                            <td class="bg-danger text-white">{{row.correct_answer}}</td>
+                        {% endif %}
+                        
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+</html>

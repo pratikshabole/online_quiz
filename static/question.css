@@ -1,0 +1,16 @@
+#question-box{
+    margin-left: 20%;
+    margin-right: 20%;
+
+}
+#question{
+    padding: 30px;
+}
+
+#options{
+    padding-left: 30px;
+}
+
+#cardfooter{
+    padding: 20px;
+}

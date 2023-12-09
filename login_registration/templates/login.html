@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login.css'%}">
+    <title>Login Page</title>
+ 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="wrapper">
+        
+        <a href="{% url 'home' %}" style="color:white; text-decoration:none;"><h1>PyQuiz</h1></a>
+        <form method="post">
+            
+            <center>
+            <h4>Login Here</h4>
+            </center>
+
+            {% csrf_token %} 
+            <div class="input-box">
+                <label for="username"></label>
+                    <input type="text" placeholder="Enter Username" id="username" name="username"> <i class='bx bxs-user'></i>
+            </div>
+
+            <div class="input-box">
+                <label for="password"></label>
+                    <input type="password" placeholder="Password" id="password" name="pass"> <i class='bx bxs-lock-alt'></i>
+            </div>
+                <br>
+            <button type="submit" class="btn">Log In</button>
+            
+            <div class="register-link">
+                <p>Don't have an account? <a href="{% url 'register' %}" >Create an account</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

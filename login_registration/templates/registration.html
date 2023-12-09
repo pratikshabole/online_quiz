@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Signup Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'registration.css'%}">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="wrapper">
+    
+        <form action="" method="post">
+            {% csrf_token %} 
+            <h1>Signup Here</h1>
+            
+            <div class="input-box">
+                <label for="username">Username</label>
+                <input type="text" placeholder="Username" name="username" id="username"><i class='bx bxs-user'></i>
+            </div>
+
+            <div class="input-box">
+                <label for="email">Email</label>
+                <input type="email" placeholder="Email or Phone" name="email" id="email"><i class='bx bxs-envelope' ></i>
+            </div>
+
+            <div class="input-box">
+                <label for="password1">Password</label>
+                <input type="password" placeholder="Password" id="password1" name="password1"><i class='bx bxs-lock-alt'></i>
+            </div>
+
+            <div class="input-box">
+                <label for="password2">Confrom Password</label>
+                <input type="password" placeholder="Confrom Password" id="password2" name="password2"><i class='bx bxs-lock-alt'></i>
+            </div>
+            <button class="btn" type="submit">Signup</button>
+            <br>
+            
+            <div class="login-link">
+                <a href="{% url 'login' %}" >Already have account? Log in here</a>
+            </div>
+        </form>
+
+    </div>
+
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home.css'%}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Home</title>
+
+</head>
+<body>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+            <div class="container-fluid" id="nav">
+                <a class="navbar-brand" style="font-size:26px" href="#"><b>PyQuiz</b></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-size:20px">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                        </li>
+
+                        {% if user.is_superuser %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+                        </li>
+                        {% endif %}
+
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'all_categories' %}">Categories</a>
+                        </li>
+                        {% endif %}
+
+                        {% if user.is_annonymus %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register' %}">register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">login</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+
+                    <ul class="nav justify-content-end" style="font-size:20px">
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:#D1F2EB" >Welcome, {{user}}</a> 
+                        </li>
+
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:white" href="{% url 'logout' %}">logout</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </nav>
+
+    <div class="banner-card1">
+        <img src="https://img.freepik.com/free-vector/low-poly-network-mesh-connection-design_1017-29580.jpg?w=826&t=st=1702031281~exp=1702031881~hmac=3200e68fff224eff9172a814f21833c7935859ac31a7b8133b22d7385dfc490f" alt="background-image-1">
+        <div class="banner-text">
+            <center>
+                <h2>Experience a new era of AI-enhanced learning</h2>
+                <br>
+                <h5>PyQuiz is the #1 global learning platform where you can study by playing quizzes.* Join our community of 300 million learners using PyQuiz’s practice tests to improve their marks and reach their goals.</h5>
+            </center>
+        </div>
+    </div>
+      
+    <div id="intro">
+        <center>
+            <h1>Python Online Quiz Platform</h1>
+            <br>
+            <br>
+            <div>
+                <a class="btn btn-primary btn-lg" type="button" href='{% url "all_categories" %}'>Get Started</a>
+            </div>
+            </center>
+    </div>
+
+    <div class="banner-card2">
+        <img src="https://img.freepik.com/free-vector/nice-halftone-wallpaper-background-set-three_1017-30068.jpg?t=st=1702022332~exp=1702022932~hmac=362b43bcf55466fe7b493fc087ecf0687cf66e0438175ec65074f580cc0bed7e" alt="background-image-2">
+        </div>
+
+        {% block content %}
+
+        {% endblock %}
+
+    </div>
+        <br>
+        <br>
+        <footer class="page-footer" style="background-color:#24013D;">
+            <div class="container">
+              <div class="row mt-4">
+                        <div class="col-md-4 mt-4" style="color:white">
+                                  <h3>About Us</h3> <br>
+                                  <p>PyQuiz is a specialized Quiz Platform, to train students rigorously on competitive technologies. We make sure that the quality coders we are making are matching to the industry standards and placing into the right position.
+                                    </p>
+                        </div>
+                        <div class="col-md-4 mt-4" style="color:white">
+                                  <h3>Terms</h3>
+                                  <ul>
+                                    <li>Privacy policy</li>
+                                    <li>Cookie settings</li>
+                                    <li>Accessibility statement</li>
+                                  </ul>
+                        </div>
+                        <div class="col-md-4 mt-4" style="color:white">
+                                  <h3>Contact Us</h3>
+                                  <ul>
+                                    <li>Address: B-6 Gulmohar Residency Sr. No. 106, Lane Number 1, adjacent to Westside, Behind Amar Business Park, Baner, Pune, Maharashtra 411045</li>
+                                    <li>talent@pyquiz.in</li>
+                                    <li>+91 6364 360 789</li>
+                                  </ul>
+                        </div>
+              </div>
+              <div class="footer-copyright text-center py-3" style="color:white">
+                   <p>© Copyright PyQuiz. All Rights Reserved</p>
+              </div>
+            </div>
+          </footer>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
